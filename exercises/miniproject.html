@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Ice Cream Order</title>
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/@picocss/pico@1/css/pico.classless.min.css"
+    />
+  </head>
+  <body>
+    <main>
+      <h1>Ice Cream Order</h1>
+
+      <label for="numScoops">Number of Scoops:</label>
+      <input
+        type="number"
+        id="numScoops"
+        name="numScoops"
+        min="1"
+        max="4"
+        required
+      /><br />
+
+      <input
+        type="radio"
+        onclick="hideOrShowDetails()"
+        id="partCone"
+        name="partType"
+        value="cone"
+        checked
+      />
+      <label for="containerCone">Cone</label><br />
+      <input
+        type="radio"
+        onclick="hideOrShowDetails()"
+        id="partCup"
+        name="partType"
+        value="cup"
+      />
+      <label for="containerCup">Cup</label><br />
+
+      <section id="toppingsSection" style="display: none">
+        <p>Toppings:</p>
+        <input type="checkbox" id="toppingSprinkles" name="toppingSprinkles" />
+        <label for="toppingSprinkles">Sprinkles ($0.50)</label><br />
+        <input type="checkbox" id="toppingHotFudge" name="toppingHotFudge" />
+        <label for="toppingHotFudge">Hot Fudge ($1.25)</label><br />
+        <input
+          type="checkbox"
+          id="toppingWhippedCream"
+          name="toppingWhippedCream"
+        />
+        <label for="toppingWhippedCream">Whipped Cream ($0.25)</label><br />
+        <input type="checkbox" id="toppingCherry" name="toppingCherry" />
+        <label for="toppingCherry">Cherry ($0.25)</label><br />
+      </section>
+
+      <button id="calculate" onclick="calculatePrice()">Submit Order</button>
+
+      <h2>Order Summary:</h2>
+      <p>Base price: <span id="basePrice">$0.00</span></p>
+      <p>Tax: <span id="tax">$0.00</span></p>
+      <p>Total Due: <span id="totalDue">$0.00</span></p>
+    </main>
+
+    <script>
+      function hideOrShowDetails() {
+        const detailsSection = document.getElementById("toppingsSection");
+        const toggleDetailsCheckbox = document.getElementById("partCup");
+        toggleElement(detailsSection, toggleDetailsCheckbox.checked);
+      }
+
+      function toggleElement(htmlElement, show) {
+        if (show) {
+          htmlElement.style.display = "block";
+        } else {
+          htmlElement.style.display = "none";
+        }
+      }
+
+      function calculatePrice() {
+        let basePrice = 2.25; //  one scoop base price in a cone or cup
+        let scoopPrice = 1.25; // each additional scoop
+        let toppingSprinklesPrice = 0.5; //  sprinkles topping
+        let toppingHotFudgePrice = 1.25; //  hot fudge topping
+        let toppingWhippedCreamPrice = 0.25; // whipped cream topping
+        let toppingCherryPrice = 0.25; // cherry topping price
+        let taxRate = 0.1; // Tax rate
+
+        // Get values
+        let numScoops = document.getElementById("numScoops").value;
+        let partType = document.querySelector(
+          'input[name="partType"]:checked'
+        ).value;
+        let hasSprinkles = document.getElementById("toppingSprinkles").checked;
+        let hasHotFudge = document.getElementById("toppingHotFudge").checked;
+        let hasWhippedCream = document.getElementById(
+          "toppingWhippedCream"
+        ).checked;
+        let hasCherry = document.getElementById("toppingCherry").checked;
+
+        //  base price
+        let totalPrice = basePrice + numScoops * scoopPrice;
+
+        // Calculate tax all due
+        let tax = totalPrice * taxRate;
+        let totalDue = totalPrice + tax;
+
+        //  topping prices for cup
+        if (partType == "cup") {
+          if (hasSprinkles) {
+            totalPrice += toppingSprinklesPrice;
+          }
+          if (hasHotFudge) {
+            totalPrice += toppingHotFudgePrice;
+          }
+          if (hasWhippedCream) {
+            totalPrice += toppingWhippedCreamPrice;
+          }
+          if (hasCherry) {
+            totalPrice += toppingCherryPrice;
+          }
+        }
+
+      
+        // Display
+        document.getElementById("basePrice").innerText =
+          "$" + totalPrice.toFixed(2);
+        document.getElementById("tax").innerText = "$" + tax.toFixed(2);
+        document.getElementById("totalDue").innerText =
+          "$" + totalDue.toFixed(2);
+      }
+    </script>
+  </body>
+</html>

@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Off by One</title>
+</head>
+
+<body>
+    <input type="date" name="selectedDate" class="primary" id="selected-date">
+    <button onclick="handleClick();">Display</button>
+    <script>
+        function handleClick() {
+            const selectedDateString = document.getElementById("selected-date").value
+            console.log(`selectedDateString is ${selectedDateString.toString()}`);
+            const selectedDateWithCurrentTime = new Date(selectedDateString);
+            console.log(`selectedDateWithCurrentTime is ${selectedDateWithCurrentTime}  `);
+            console.log("");
+            const selectedDateStringAtMidnight = selectedDateString + 'T00:00';
+            console.log(`selectedDateStringAtMidnight is ${selectedDateStringAtMidnight}`);
+            const selectedDateAtMidnight = new Date(selectedDateStringAtMidnight);
+            console.log(`selectedDateAtMidnight is ${selectedDateAtMidnight.toString()}`);
+        }
+
+
+
+
+    </script>
+</body>
+
+</html>

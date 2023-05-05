@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <input type="date" id="theDate" />
+    <button type="button" onclick="handleClick()" id="dateBtn">click</button>
+
+    <p id="messageOutput"></p>
+
+    <script>
+      function handleClick() {
+        const dateInput = document.getElementById("theDate");
+
+        let date = new Date(theDate.value)
+        document.getElementById("messageOutput").innerHTML = `Current date is ${date.toString()}`;
+      }
+    </script>
+  </body>
+</html>
