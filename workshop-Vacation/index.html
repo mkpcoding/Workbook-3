@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@picocss/pico@1/css/pico.classless.min.css"
+    />
+    <title>Vacation Resort</title>
+    
+</head>
+<body>
+    <h1>Vacation Resort</h1>
+    <h2>Overnight Cost Estimator</h2>
+    <form id="estimator-form">
+        <label for="name">Name:</label>
+        <input type="text" id="name" required>
+        <br>
+        <label for="email">Email:</label>
+        <input type="email" id="email" required>
+        <br>
+        <label for="checkin-date">Check-in Date:</label>
+        <input type="date" id="checkin-date" required>
+        <br>
+        <label for="nights">Number of Nights:</label>
+        <input type="number" id="nights" min="1" max="28" required>
+        <br>
+        <label>Room Type:</label>
+        <input type="radio" id="queen" name="room-type" value="Queen" required>
+        <label for="queen">Queen</label>
+        <input type="radio" id="king" name="room-type" value="King">
+        <label for="king">King</label>
+        <input type="radio" id="two-bedroom" name="room-type" value="2-Bedroom Suite">
+        <label for="two-bedroom">2-Bedroom Suite</label>
+        <br>
+        <label for="adults">Adults:</label>
+        <input type="number" id="adults" min="1" max="4" required>
+        <br>
+        <label for="children">Children:</label>
+        <input type="number" id="children" min="0" max="4" required>
+        <br>
+        <label>Discount:</label>
+        <input type="radio" id="none" name="discount" value="0" checked>
+        <label for="none">None</label>
+        <input type="radio" id="aaa-senior" name="discount" value="0.1">
+        <label for="aaa-senior">AAA/Senior (10%)</label>
+        <input type="radio" id="military" name="discount" value="0.2">
+        <label for="military">Military (20%)</label>
+        <br>
+        <button type="submit">Estimate Stay Cost</button>
+    </form>
+    <script src="script.js"></script>
+</body>
+</html>
